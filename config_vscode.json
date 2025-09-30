@@ -1,0 +1,127 @@
+{
+  "window.zoomLevel": 1.25,
+  "explorer.confirmDragAndDrop": false,  
+  "workbench.iconTheme": "material-icon-theme",
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "dart.previewFlutterUiGuides": true,
+  "dart.openDevTools": "never",
+  "dart.addSdkToTerminalPath": false,
+  "dart.sdkSwitchingTarget": "global", 
+  "dart.previewFlutterUiGuidesCustomTracking": false,
+  "dart.showInspectorNotificationsForWidgetErrors": false,
+  "editor.fontSize": 12,
+  "editor.fontLigatures": true,
+  "editor.fontFamily": "Fira Code",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.insertSpaces": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off",
+  },
+  "editor.codeActionsOnSave": {
+
+    "source.fixAll": "never",
+    "source.organizeImports": "never",
+    "sort_constructors_first": "always",
+    "sort_unnamed_constructors_first": "explicit",
+    "prefer_single_quotes": "explicit"
+
+  },
+  "dart.flutterCreateOrganization": "com.arosistemas",
+  "files.eol": "\n",
+  "git.autofetch": true,
+  "better-comments.highlightPlainText": true,
+  "better-comments.tags": [
+    {
+      "tag": "!",
+      "color": "#FF2D00",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "?",
+      "color": "#EDBC33",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "*",
+      "color": "#5FB3EE",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "TODO",
+      "color": "#00FF4C",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "/",
+      "color": "#DF9EF6",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": "//",
+      "color": "#1343E0FF",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    },
+    {
+      "tag": ".",
+      "color": "#F5D58B",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": false,
+      "italic": false
+    }
+  ],
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "editor.guides.bracketPairs": true,
+  "git.openRepositoryInParentFolders": "never",
+  "command-runner.commands": {
+    "Create Mocks": "flutter pub run build_runner build",
+    "Create test.output": "flutter test --machine --coverage > tests.output",
+    "Create Coverage only": "flutter test --coverage",
+    "Create Coverage in Html only": "genhtml coverage/lcov.info -o coverage/html",
+    "Create coverage and Create html Report": "flutter test --coverage && genhtml coverage/lcov.info -o coverage/html",
+    "Open Coverage": "open coverage/html/index.html",
+    "Sonar Scanner": "flutter test --machine --coverage > tests.output && sonar-scanner",
+    "Generate Documentation": "dart analyze && dart doc .",
+    "Git Save": "git add . && git commit",
+    "git commit": "git commit"
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.colorTheme": "Monokai",
+  "terminal.integrated.stickyScroll.enabled": false
+}

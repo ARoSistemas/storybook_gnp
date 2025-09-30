@@ -5,6 +5,17 @@ import 'package:get/get.dart';
 import 'package:storybook_gnp/shared/widgets/custom_notification.dart';
 
 abstract class NotificationAbstract {
+  /// Method to show a custom notification as an overlay
+  ///
+  /// * [type] Type of alert (success, error, warning, info)
+  /// * [message] Message to show in the notification
+  /// * [hasShadow] Whether the notification has a shadow or not
+  /// * [title] Optional title for the notification
+  /// * [showCloseButton] Whether to show a close button or not
+  /// * [onAction] Optional callback for action button
+  /// * [actionLabel] Optional label for action button
+  // ignore: lines_longer_than_80_chars
+  /// * [duration] Duration before auto-closing the notification (if no close button) Defaults to 3 seconds
   void showNotification({
     required AlertType type,
     required String message,
@@ -24,6 +35,16 @@ class NotificationService extends GetxService implements NotificationAbstract {
   OverlayEntry? _currentOverlay;
 
   /// Method to show a custom notification as an overlay
+  ///
+  /// * [ type ] Type of alert (success, error, warning, info)
+  /// * [ message ] Message to show in the notification
+  /// * [ hasShadow ] Whether the notification has a shadow or not
+  /// * [ title ] Optional title for the notification
+  /// * [ showCloseButton ] Whether to show a close button or not
+  /// * [ onAction ] Optional callback for action button
+  /// * [ actionLabel ] Optional label for action button
+  // ignore: lines_longer_than_80_chars
+  /// * [ duration ] Duration before auto-closing the notification (if no close button) Defaults to 3 seconds
   @override
   void showNotification({
     required AlertType type,

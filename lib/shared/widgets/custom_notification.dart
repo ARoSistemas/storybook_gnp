@@ -4,10 +4,23 @@ import 'package:flutter/material.dart';
 /// Enum for different types of custom snackbars
 enum AlertType { success, warning, info, error }
 
-/// Custom notification widget
-/// Displays a customizable notification message
-/// with optional title, action button, and close button.
 class CustomNotification extends StatelessWidget {
+  /// Custom notification widget.
+  ///
+  /// Displays a customizable notification message
+  /// with optional title, action button, and close button.
+  ///
+  /// Properties:
+  ///
+  /// * [ type ] Type of alert (success, error, warning, info)
+  /// * [ message ] Message to show in the notification
+  /// * [ hasShadow ] Whether the notification has a shadow or not
+  /// * [ title ] Optional title for the notification
+  /// * [ showCloseButton ] Whether to show a close button or not
+  /// * [ onAction ] Optional callback for action button
+  /// * [ actionLabel ] Optional label for action button
+  /// * [ onClose ] Optional callback for close button
+  /// * Returns a [ Widget ] representing the custom notification
   const CustomNotification({
     required this.type,
     required this.message,
@@ -122,13 +135,7 @@ class CustomNotification extends StatelessWidget {
                 ),
               ),
             ),
-          // TextButton(
-          //   onPressed: onAction,
-          //   child: Text(
-          //     actionLabel ?? 'Action',
-          //     style: const TextStyle(color: Colors.orange),
-          //   ),
-          // ),
+
           if (showCloseButton)
             IconButton(
               icon: const Icon(Icons.close, color: Colors.orange),
