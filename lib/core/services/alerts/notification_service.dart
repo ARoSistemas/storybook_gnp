@@ -2,15 +2,15 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'custom_notification.dart';
+import 'package:storybook_gnp/shared/widgets/custom_notification.dart';
 
 abstract class NotificationAbstract {
   void showNotification({
     required AlertType type,
+    required String message,
     bool hasShadow = true,
     String? title,
-    required String message,
-    bool? showCloseButton,
+    bool showCloseButton = false,
     VoidCallback? onAction,
     String? actionLabel,
     Duration duration,
@@ -27,10 +27,10 @@ class NotificationService extends GetxService implements NotificationAbstract {
   @override
   void showNotification({
     required AlertType type,
+    required String message,
     bool hasShadow = true,
     String? title,
-    required String message,
-    bool? showCloseButton,
+    bool showCloseButton = false,
     VoidCallback? onAction,
     String? actionLabel,
     Duration duration = const Duration(seconds: 3),
@@ -68,14 +68,14 @@ class NotificationService extends GetxService implements NotificationAbstract {
     _currentOverlay = overlay;
 
     /// Check that the overlay context is available
-    final overlayContext = Get.overlayContext;
+    final BuildContext? overlayContext = Get.overlayContext;
 
     /// If yes, use it to insert the overlay
     if (overlayContext != null) {
       Overlay.of(overlayContext, rootOverlay: true).insert(overlay);
     } else {
       /// if not, try with the main context
-      final context = Get.context;
+      final BuildContext? context = Get.context;
       if (context != null) {
         Overlay.of(context, rootOverlay: true).insert(overlay);
       } else {
@@ -86,10 +86,8 @@ class NotificationService extends GetxService implements NotificationAbstract {
     }
 
     /// If no close button => auto close
-    if (showCloseButton != true) {
-      Future.delayed(duration, () {
-        removeCurrent();
-      });
+    if (!showCloseButton) {
+      Future.delayed(duration, removeCurrent);
     }
   }
 
