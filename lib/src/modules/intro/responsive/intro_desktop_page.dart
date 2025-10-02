@@ -25,6 +25,18 @@ class _IntroDesktopPage extends StatelessWidget {
               style: Get.textTheme.headlineMedium,
             ),
           ),
+
+          /// New Button for File Operations Screen
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () async {
+              await Get.toNamed('/file-operations');
+            },
+            child: Text(
+              'File Operations',
+              style: Get.textTheme.headlineMedium,
+            ),
+          ),
         ],
       ),
     ),

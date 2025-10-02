@@ -7,9 +7,9 @@ part 'intro_bindins.dart';
 
 part 'responsive/intro_desktop_page.dart';
 
-part 'responsive/intro_phone_page.dart';
+// part 'responsive/intro_phone_page.dart';
 
-part 'responsive/intro_tablet_page.dart';
+// part 'responsive/intro_tablet_page.dart';
 
 class IntroPage extends GetResponsiveView<LoginController> {
   IntroPage({super.key});
@@ -22,10 +22,10 @@ class IntroPage extends GetResponsiveView<LoginController> {
   );
 
   @override
-  Widget? phone() => _IntroPhonePage();
+  Widget? phone() => _IntroDesktopPage();
 
   @override
-  Widget? tablet() => _IntroTabletPage();
+  Widget? tablet() => _IntroDesktopPage();
 
   @override
   Widget? desktop() => _IntroDesktopPage();
