@@ -1,13 +1,13 @@
 {
   "window.zoomLevel": 1.25,
-  "explorer.confirmDragAndDrop": false,  
+  "explorer.confirmDragAndDrop": false,
   "workbench.iconTheme": "material-icon-theme",
   "dart.debugExternalPackageLibraries": false,
   "dart.debugSdkLibraries": false,
   "dart.previewFlutterUiGuides": true,
   "dart.openDevTools": "never",
   "dart.addSdkToTerminalPath": false,
-  "dart.sdkSwitchingTarget": "global", 
+  "dart.sdkSwitchingTarget": "global",
   "dart.previewFlutterUiGuidesCustomTracking": false,
   "dart.showInspectorNotificationsForWidgetErrors": false,
   "editor.fontSize": 12,
@@ -24,16 +24,14 @@
     "editor.selectionHighlight": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": "off",
+    "editor.wordBasedSuggestions": "off"
   },
   "editor.codeActionsOnSave": {
-
     "source.fixAll": "never",
     "source.organizeImports": "never",
     "sort_constructors_first": "always",
     "sort_unnamed_constructors_first": "explicit",
     "prefer_single_quotes": "explicit"
-
   },
   "dart.flutterCreateOrganization": "com.arosistemas",
   "files.eol": "\n",
@@ -124,4 +122,28 @@
   "vsicons.dontShowNewVersionMessage": true,
   "workbench.colorTheme": "Monokai",
   "terminal.integrated.stickyScroll.enabled": false
+},
+{
+  "window.zoomLevel": 1.25,
+  "editor.fontSize": 16,
+  "editor.lineHeight": 24,
+  "editor.fontFamily": "Fira Code",
+  "editor.fontLigatures": true,
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.minimap.enabled": true,
+  "editor.cursorBlinking": "smooth",
+  "dart.previewHotReloadOnSaveWatcher": true,
+  "editor.formatOnSave": true,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "always"
+    }
+  },
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 2000,
+  "explorer.confirmDelete": false
 }
