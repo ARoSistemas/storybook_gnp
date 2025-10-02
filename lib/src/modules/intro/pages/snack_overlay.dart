@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/core/utils/logger.dart';
+import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/shared/widgets/custom_notification.dart';
 
 class SnackBarOverlay extends StatelessWidget {

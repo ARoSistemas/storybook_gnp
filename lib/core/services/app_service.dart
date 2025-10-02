@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/core/services/navigation/navigation_service.dart';
 import 'package:storybook_gnp/core/services/network/network_service.dart';
 import 'package:storybook_gnp/core/services/security/cipher_service.dart';
 import 'package:storybook_gnp/core/services/threads/threads_service.dart';
 import 'package:storybook_gnp/core/services/ui/ui_service.dart';
+import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/shared/services/storage/user_storage.dart';
 
 part 'storage/storage_service.dart';

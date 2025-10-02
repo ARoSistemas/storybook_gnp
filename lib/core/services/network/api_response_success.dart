@@ -2,7 +2,8 @@ import 'dart:convert';
 
 /// Represents a successful API response.
 ///
-/// The [ApiSuccess] class encapsulates the data of a successful response, including the HTTP status code and the returned data.
+/// The [ApiSuccess] class encapsulates the data of a successful response,
+/// including the HTTP status code and the returned data.
 ///
 /// ### Properties
 /// - [code]: HTTP status code of the response.
