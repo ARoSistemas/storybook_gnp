@@ -1,9 +1,9 @@
-part of 'intro_controller.dart';
+// part of 'intro_controller.dart';
 
-final class _IntroModel {
-  const _IntroModel({
-    this.name = 'Intro',
-  });
+// final class _IntroModel {
+//   const _IntroModel({
+//     this.name = 'Intro',
+//   });
 
-  final String name;
-}
+//   final String name;
+// }

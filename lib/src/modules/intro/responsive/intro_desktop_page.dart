@@ -1,15 +1,13 @@
 part of '../intro_page.dart';
 
 class _IntroDesktopPage extends StatelessWidget {
-  _IntroDesktopPage();
-
-  final IntroController _c = Get.find<IntroController>();
+  const _IntroDesktopPage();
 
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Get.theme.colorScheme.inversePrimary,
-      title: Text(_c.state!.name),
+      title: const Text('HomePage StoryBook'),
     ),
     body: Padding(
       padding: const EdgeInsets.all(15),

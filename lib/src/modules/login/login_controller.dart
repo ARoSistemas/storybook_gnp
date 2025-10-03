@@ -43,41 +43,45 @@ class LoginController extends GetxController with StateMixin<LoginMdl> {
 
     isLoading.value = true;
 
-    /// Se hace la petición a la API
-    final ApiCallAbstract apiCall = ApiCallImpl();
-    final ApiResponse<ApiFailure, ApiSuccess> response = await apiCall.call(
-      baseUri: baseUrl,
-      bearer: '',
-      endpoint: '/admonproveedores',
-      method: HttpMethod.post,
-      body: jsonEncode(
-        {
-          'mail': email,
-          'password': password,
-          'tipousuario': 'administrador',
-        },
-      ),
-    );
+    // /// Se hace la petición a la API
+    // final ApiCallAbstract apiCall = ApiCallImpl();
+    // final ApiResponse<ApiFailure, ApiSuccess> response = await apiCall.call(
+    //   baseUri: baseUrl,
+    //   bearer: '',
+    //   endpoint: '/admonproveedores/conveniomedico/login',
+    //   method: HttpMethod.post,
+    //   body: jsonEncode(
+    //     {
+    //       'mail': email,
+    //       'password': password,
+    //       'tipousuario': 'administrador',
+    //     },
+    //   ),
+    // );
 
-    isLoading.value = false;
+    // isLoading.value = false;
 
-    response.when(
-      (failure) {
-        notificationService.showNotification(
-          title: 'Error',
-          message: failure.message,
-          type: AlertType.error,
-          showCloseButton: true,
-        );
+    // response.when(
+    //   (failure) {
+    //     notificationService.showNotification(
+    //       title: 'Error',
+    //       message: failure.message,
+    //       type: AlertType.error,
+    //       showCloseButton: true,
+    //     );
 
-        change(LoginMdl.empty(), status: RxStatus.error(failure.message));
-      },
-      (success) {
-        final LoginMdl user = LoginMdl.fromRaw(success.data);
-        userStorage.saveUser(user);
-        change(user, status: RxStatus.success());
-      },
-    );
+    //     change(LoginMdl.empty(), status: RxStatus.error(failure.message));
+    //   },
+    //   (success) {
+    //     final LoginMdl user = LoginMdl.fromRaw(success.data);
+    //     userStorage.saveUser(user);
+    //     change(user, status: RxStatus.success());
+    //   },
+    // );
+    final LoginMdl user = LoginMdl.hardCode();
+
+    userStorage.saveUser(user);
+    change(user, status: RxStatus.success());
 
     // try {
     //   final LoginMdl response = await _authService.loginService(

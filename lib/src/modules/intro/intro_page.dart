@@ -22,11 +22,11 @@ class IntroPage extends GetResponsiveView<LoginController> {
   );
 
   @override
-  Widget? phone() => _IntroDesktopPage();
+  Widget? phone() => const _IntroDesktopPage();
 
   @override
-  Widget? tablet() => _IntroDesktopPage();
+  Widget? tablet() => const _IntroDesktopPage();
 
   @override
-  Widget? desktop() => _IntroDesktopPage();
+  Widget? desktop() => const _IntroDesktopPage();
 }
