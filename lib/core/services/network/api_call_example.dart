@@ -21,7 +21,7 @@ class ApiCallExample {
     body: '',
     epName: 'GetPopularMovies',
     queryParameters: {
-      'api_key': 'tu_api_key_aqui',
+      'api_key': 'apiKey',
       'language': 'es-ES',
     },
     bearer: '',
@@ -95,7 +95,7 @@ Future<void> directUsageExample() async {
     body: '',
     epName: 'DiscoverMovies',
     queryParameters: {
-      'api_key': 'tu_api_key',
+      'api_key': 'apiKey',
       'sort_by': 'popularity.desc',
     },
     bearer: '',
