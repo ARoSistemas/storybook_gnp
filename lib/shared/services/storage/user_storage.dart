@@ -24,15 +24,15 @@ class UserStorage extends IStorage {
   StorageProperty<String> get user =>
       properties.firstWhere((p) => p.key == 'user') as StorageProperty<String>;
 
-  void saveUser(LoginRespondeModel u) {
-    save(user, jsonEncode(u.toJson()));
+  void saveUser(LoginMdl userMdl) {
+    save(user, jsonEncode(userMdl.toJson()));
   }
 
-  LoginRespondeModel? getUser() {
+  LoginMdl? getUser() {
     final String value = user.value;
     if (user.value.isEmpty) {
       return null;
     }
-    return LoginRespondeModel.fromJson(json.decode(value));
+    return LoginMdl.fromMap(json.decode(value));
   }
 }

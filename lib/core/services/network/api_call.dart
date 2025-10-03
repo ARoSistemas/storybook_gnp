@@ -123,10 +123,25 @@ class ApiCallImpl extends GetConnect implements ApiCallAbstract {
     try {
       logs = {
         ...logs,
+        'method': method.toString().split('.').last,
         'url': fullUrl,
         'queryParameters': queryParameters,
         'headers': finalHeaders,
+        'body': body.isNotEmpty ? jsonDecode(body) : 'Empty body',
       };
+
+      if (kDebugMode) {
+        log('''
+        **************************************************************
+        Se hace la petición a la API::
+        **************************************************************
+${const JsonEncoder.withIndent(' ').convert(logs)}
+        
+        Esperando respuesta...
+        --------------------------------------------------------------
+        ''');
+        logs = {};
+      }
 
       /// Select HTTP method for the request
       switch (method) {
@@ -203,13 +218,6 @@ class ApiCallImpl extends GetConnect implements ApiCallAbstract {
         /// and return a success response.
         logs = {
           ...logs,
-          'body': (body == 'mock')
-              ? body
-              : body.isNotEmpty
-              ? jsonDecode(body)
-              : 'Empty body',
-          'Response::':
-              '**************************************************************',
           'Response code:': petitionResponse.statusCode,
         };
 
@@ -340,11 +348,7 @@ class ApiCallImpl extends GetConnect implements ApiCallAbstract {
       ///  Delete this snippet when finish
       if (kDebugMode) {
         log('''
-            $epName
-            Endpoint ::-> $endpoint
-            Url :: -> $fullUrl
-            --------------------------------------------------------------
-              ${const JsonEncoder.withIndent(' ').convert(logs)}
+${const JsonEncoder.withIndent(' ').convert(logs)}
             --------------------------------------------------------------
             ''', stackTrace: stackTrace);
       }

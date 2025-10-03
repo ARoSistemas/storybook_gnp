@@ -26,7 +26,7 @@ class AuthServices extends ApiBaseProvider {
 
     if (response.body != null) {
       final Map<String, dynamic> jsonBody = response.body['payload'];
-      return LoginRespondeModel.fromJson(jsonBody);
+      return LoginMdl.fromMap(jsonBody);
     }
 
     if (response.body == null) {

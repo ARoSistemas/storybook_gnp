@@ -31,7 +31,7 @@ class ApiCallExample {
   Future<ApiResponse<ApiFailure, ApiSuccess>> createUser(
     Map<String, dynamic> userData,
   ) => _apiCall.call(
-    baseUri: baseUrlMedicos, // desde constants.dart
+    baseUri: baseUrl, // desde constants.dart
     endpoint: '/users', // endpoint dinámico
     body: jsonEncode(userData),
     epName: 'CreateUser',
@@ -48,7 +48,7 @@ class ApiCallExample {
     String userId,
     Map<String, dynamic> userData,
   ) => _apiCall.call(
-    baseUri: baseUrlAsistentes, // desde constants.dart
+    baseUri: baseUrl, // desde constants.dart
     endpoint: '/users/$userId', // endpoint dinámico con parámetro
     body: jsonEncode(userData),
     epName: 'UpdateUser',

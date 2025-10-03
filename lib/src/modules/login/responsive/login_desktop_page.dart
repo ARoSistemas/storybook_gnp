@@ -1,15 +1,15 @@
 part of '../login_page.dart';
 
-class _LoginDesktopPage extends StatelessWidget {
-  _LoginDesktopPage();
+class _LoginDesktopPage extends GetView<LoginController> {
+  const _LoginDesktopPage();
 
-  final LoginController _c = Get.find<LoginController>();
+  // final LoginController _c = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(
       backgroundColor: Get.theme.colorScheme.inversePrimary,
-      title: Text(_c.state!.name),
+      title: const Text('Login'),
     ),
     body: Center(
       child: Column(

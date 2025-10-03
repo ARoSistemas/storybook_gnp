@@ -24,11 +24,11 @@ class LoginPage extends GetResponsiveView<LoginController> {
   );
 
   @override
-  Widget? phone() => _LoginPhonePage();
+  Widget? phone() => const _LoginPhonePage();
 
   @override
-  Widget? tablet() => _LoginTabletPage();
+  Widget? tablet() => const _LoginTabletPage();
 
   @override
-  Widget? desktop() => _LoginDesktopPage();
+  Widget? desktop() => const _LoginDesktopPage();
 }

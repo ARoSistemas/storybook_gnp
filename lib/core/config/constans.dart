@@ -12,6 +12,4 @@ const String env = 'dev';
 const String versionApp = '1.0.0+1 :: $env';
 
 /// The base URL for The Movie Database API.
-const String baseUrl = 'https://api.themoviedb.org';
-const String baseUrlMedicos = 'https://api.themoviedb.org';
-const String baseUrlAsistentes = 'https://api.themoviedb.org';
+const String baseUrl = 'https://admonproveedoressalud-services-qa.gnp.com.mx';

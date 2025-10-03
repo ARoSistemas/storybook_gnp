@@ -36,7 +36,7 @@ class ApiCallUsageExamples {
     String bearerToken,
     Map<String, dynamic> userData,
   ) => _apiCall.call(
-    baseUri: baseUrlMedicos, // desde constants.dart
+    baseUri: baseUrl, // desde constants.dart
     endpoint: '/users',
     bearer: bearerToken,
     body: jsonEncode(userData),

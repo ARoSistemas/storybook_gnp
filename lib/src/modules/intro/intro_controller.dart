@@ -29,12 +29,12 @@ class IntroController extends GetxController with StateMixin<_IntroModel> {
     final UserStorage userStorage = AppService.i.userStorage;
     try {
       isLoading.value = true;
-      final LoginRespondeModel response = await _authService.loginService(
+      final LoginMdl response = await _authService.loginService(
         email,
         password,
       );
       userStorage.saveUser(response);
-      if (response.token?.jwt != null || response.token?.jwt != '') {
+      if (response.token.jwt != '') {
         await Get.toNamed('/home');
       }
     } on ApiException catch (e) {

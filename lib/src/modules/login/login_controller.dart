@@ -1,18 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:storybook_gnp/core/config/constans.dart';
 import 'package:storybook_gnp/core/services/app_service.dart';
-import 'package:storybook_gnp/core/services/network/network_service.dart';
+import 'package:storybook_gnp/core/services/network/api_call.dart';
+import 'package:storybook_gnp/core/services/network/api_response.dart';
+import 'package:storybook_gnp/core/services/network/api_response_failure.dart';
+import 'package:storybook_gnp/core/services/network/api_response_success.dart';
 import 'package:storybook_gnp/core/utils/logger.dart';
 import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
+import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/shared/services/storage/user_storage.dart';
-import 'package:storybook_gnp/src/modules/login/services/auth_services.dart';
+import 'package:storybook_gnp/shared/widgets/custom_notification.dart';
 
 part 'login_model.dart';
 
-class LoginController extends GetxController with StateMixin<_LoginModel> {
-  final AuthServices _authService = Get.put(AuthServices());
+class LoginController extends GetxController with StateMixin<LoginMdl> {
+  // final AuthServices _authService = Get.put(AuthServices());
+  final NotificationService notificationService =
+      Get.find<NotificationService>();
+
   final LocalAuthentication auth = LocalAuthentication();
   RxBool isAuthenticated = false.obs;
   RxBool canCheckBiometrics = false.obs;
@@ -25,21 +35,63 @@ class LoginController extends GetxController with StateMixin<_LoginModel> {
   RxBool isPasswordVisible = false.obs;
   final TextEditingController passwordController = TextEditingController();
 
+  // Getter rápido para acceder al user en toda la app
+  LoginMdl? get currentUser => state;
+
   Future<void> loginController(String email, String password) async {
     final UserStorage userStorage = AppService.i.userStorage;
-    try {
-      isLoading.value = true;
-      final LoginRespondeModel response = await _authService.loginService(
-        email,
-        password,
-      );
-      userStorage.saveUser(response);
-      if (response.token?.jwt != null || response.token?.jwt != '') {
-        await Get.toNamed('/home');
-      }
-    } on ApiException catch (e) {
-      logger.d(e);
-    }
+
+    isLoading.value = true;
+
+    /// Se hace la petición a la API
+    final ApiCallAbstract apiCall = ApiCallImpl();
+    final ApiResponse<ApiFailure, ApiSuccess> response = await apiCall.call(
+      baseUri: baseUrl,
+      bearer: '',
+      endpoint: '/admonproveedores',
+      method: HttpMethod.post,
+      body: jsonEncode(
+        {
+          'mail': email,
+          'password': password,
+          'tipousuario': 'administrador',
+        },
+      ),
+    );
+
+    isLoading.value = false;
+
+    response.when(
+      (failure) {
+        notificationService.showNotification(
+          title: 'Error',
+          message: failure.message,
+          type: AlertType.error,
+          showCloseButton: true,
+        );
+
+        change(LoginMdl.empty(), status: RxStatus.error(failure.message));
+      },
+      (success) {
+        final LoginMdl user = LoginMdl.fromRaw(success.data);
+        userStorage.saveUser(user);
+        change(user, status: RxStatus.success());
+      },
+    );
+
+    // try {
+    //   final LoginMdl response = await _authService.loginService(
+    //     email,
+    //     password,
+    //   );
+
+    //   userStorage.saveUser(response);
+    //   if (response.token.jwt != null || response.token.jwt != '') {
+    //     await Get.toNamed('/home');
+    //   }
+    // } on ApiException catch (e) {
+    //   logger.d(e);
+    // }
   }
 
   void toggleInputFields() {
@@ -53,8 +105,10 @@ class LoginController extends GetxController with StateMixin<_LoginModel> {
   @override
   Future<void> onInit() async {
     super.onInit();
-    const _LoginModel loginModel = _LoginModel();
-    change(loginModel, status: RxStatus.success());
+    // const _LoginModel loginModel = _LoginModel();
+    // change(loginModel, status: RxStatus.success());
+    change(LoginMdl.empty(), status: RxStatus.success());
+
     await checkBiometricsSupport();
   }
 
