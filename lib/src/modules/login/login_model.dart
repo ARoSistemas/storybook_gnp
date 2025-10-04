@@ -1,9 +1,9 @@
-part of 'login_controller.dart';
+// part of 'login_controller.dart';
 
-final class _LoginModel {
-  const _LoginModel({
-    this.name = 'Login',
-  });
+// final class _LoginModel {
+//   const _LoginModel({
+//     this.name = 'Login',
+//   });
 
-  final String name;
-}
+//   final String name;
+// }

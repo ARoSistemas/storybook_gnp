@@ -16,6 +16,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final AppThemeService theme = appService.ui.appTheme;
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: FlavorConfig.appName,
       theme: theme.lightTheme,
       darkTheme: theme.darkTheme,

@@ -1,5 +1,6 @@
+const bool isHardCode = true;
+
 /// The current environment of the application.
-///
 /// **Possible Values:**
 /// - `dev`: Development environment.
 /// - `uat`: Quality Assurance environment.

@@ -1,6 +1,5 @@
 import 'package:get/get_connect/http/src/response/response.dart';
 import 'package:storybook_gnp/core/services/network/network_service.dart';
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
 
 class AuthServices extends ApiBaseProvider {
   @override
@@ -25,8 +24,8 @@ class AuthServices extends ApiBaseProvider {
     );
 
     if (response.body != null) {
-      final Map<String, dynamic> jsonBody = response.body['payload'];
-      return LoginMdl.fromMap(jsonBody);
+      // final Map<String, dynamic> jsonBody = response.body['payload'];
+      // return LoginMdl.fromMap(jsonBody);
     }
 
     if (response.body == null) {

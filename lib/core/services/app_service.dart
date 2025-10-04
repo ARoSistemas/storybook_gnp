@@ -23,6 +23,7 @@ class AppService extends GetxService {
   late final ThreadsService threads;
   late final UIService ui;
   late final UserStorage userStorage;
+  late final NotificationService notifications;
 
   Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +36,7 @@ class AppService extends GetxService {
     ui = Get.put(UIService());
 
     ///
-    Get.put(NotificationService());
+    notifications = Get.put(NotificationService());
 
     await storage.init();
     await ui.init();

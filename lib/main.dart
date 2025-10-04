@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:storybook_gnp/core/services/app_service.dart';
-import 'package:storybook_gnp/core/services/network/api_call.dart';
 import 'package:storybook_gnp/core/utils/logger.dart';
 import 'package:storybook_gnp/src/app.dart';
 
@@ -11,7 +8,6 @@ Future<void> main() async {
   final AppService app = Get.put(AppService());
   await app.init();
   logger.i('App Service started');
-  HttpOverrides.global = MyHttpOverrides();
 
   runApp(const App());
 }

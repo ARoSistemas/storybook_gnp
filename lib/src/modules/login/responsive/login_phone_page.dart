@@ -135,7 +135,7 @@ class _LoginPhonePage extends GetView<LoginController> {
                     if (!controller.isEmailEntered.value) {
                       controller.toggleInputFields();
                     } else {
-                      await controller.loginController(
+                      await controller.login(
                         controller.emailController.text,
                         controller.passwordController.text,
                       );

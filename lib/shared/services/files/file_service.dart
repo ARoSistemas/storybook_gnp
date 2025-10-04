@@ -109,10 +109,10 @@ class FileService extends GetxService implements FileServiceAbstract {
       final file = File(savePath);
 
       // Crear directorio si no existe
-      final Directory directory = file.parent;
-      if (!await directory.exists()) {
-        await directory.create(recursive: true);
-      }
+      // final Directory directory = file.parent;
+      // if (!await directory.exists()) {
+      //   await directory.create(recursive: true);
+      // }
 
       await file.writeAsBytes(bytes);
       return true;

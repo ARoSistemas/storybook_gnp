@@ -45,15 +45,10 @@ abstract class ApiCallAbstract extends GetConnect {
     required String body,
     String epName = '-|',
     HttpMethod method = HttpMethod.get,
-    // Map<String, String> headers = const {
-    //   'Content-Type': 'application/json',
-    //   'Accept': 'application/json',
-    //   'charset': 'UTF-8',
-    // }, content-length: 81, content-type: application/json; charset=utf-8
     Map<String, String> headers = const {
-      'content-Type': 'application/json',
-      'content-length': '81',
-      'charset': 'utf-8',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'charset': 'UTF-8',
     },
     Map<String, String> queryParameters = const {},
     Progress? uploadProgress,
@@ -87,31 +82,12 @@ abstract class ApiCallAbstract extends GetConnect {
   String getBaseUri(String baseUri, String endpoint);
 }
 
-// Sobrescribir HttpClient para ignorar certificados
-class MyHttpOverrides extends HttpOverrides {
-  @override
-  HttpClient createHttpClient(SecurityContext? context) {
-    final HttpClient client = super.createHttpClient(context)
-      ..badCertificateCallback = (cert, host, port) {
-        if (kDebugMode) {
-          print('⚠️ Ignorando certificado de $host');
-          return true; // aceptar siempre en debug
-        }
-        return false; // en release no lo ignores
-      };
-    return client;
-  }
-}
-
 /// Concrete implementation of the `ApiCallAbstract` class
 class ApiCallImpl extends GetConnect implements ApiCallAbstract {
-  /// Constructor for `ApiCallImpl` class.
-
   @override
   void onInit() {
     super.onInit();
     httpClient.timeout = const Duration(seconds: 20);
-    // httpClient.baseUrl = 'https://admonproveedoressalud-services-qa.gnp.com.mx';
   }
 
   @override
@@ -123,9 +99,9 @@ class ApiCallImpl extends GetConnect implements ApiCallAbstract {
     String epName = '-|',
     HttpMethod method = HttpMethod.get,
     Map<String, String> headers = const {
-      'content-Type': 'application/json',
+      'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'charset': 'utf-8',
+      'charset': 'UTF-8',
     },
     Map<String, String> queryParameters = const {},
     Progress? uploadProgress,
@@ -179,9 +155,6 @@ ${const JsonEncoder.withIndent(' ').convert(logs)}
           );
 
         case HttpMethod.post:
-          // final HttpClient client = HttpClient()
-          //   ..badCertificateCallback = (cert, host, port) => true;
-
           petitionResponse = await httpClient.post(
             fullUrl,
             body: body,
@@ -414,5 +387,21 @@ ${const JsonEncoder.withIndent(' ').convert(logs)}
     } else {
       return baseUri + endpoint;
     }
+  }
+}
+
+// Sobrescribir HttpClient para ignorar certificados
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    final HttpClient client = super.createHttpClient(context)
+      ..badCertificateCallback = (cert, host, port) {
+        if (kDebugMode) {
+          print('⚠️ Ignorando certificado de $host');
+          return true; // aceptar para debug
+        }
+        return false; // false para release - no ignorar -
+      };
+    return client;
   }
 }
