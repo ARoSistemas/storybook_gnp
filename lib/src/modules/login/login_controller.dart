@@ -12,12 +12,14 @@ import 'package:storybook_gnp/core/services/network/api_response.dart';
 import 'package:storybook_gnp/core/services/network/api_response_failure.dart';
 import 'package:storybook_gnp/core/services/network/api_response_success.dart';
 import 'package:storybook_gnp/core/utils/logger.dart';
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
 import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/shared/services/storage/user_storage.dart';
 import 'package:storybook_gnp/shared/widgets/custom_notification.dart';
+import 'package:storybook_gnp/src/modules/login/login_model.dart';
 
-class LoginController extends GetxController with StateMixin<LoginMdl> {
+// part 'login_model.dart';
+
+class LoginController extends GetxController with StateMixin<LoginModel> {
   LoginController(this.apiCall);
   final ApiCallAbstract apiCall;
 
@@ -35,17 +37,17 @@ class LoginController extends GetxController with StateMixin<LoginMdl> {
   final RxList<BiometricType> availableBiometrics = <BiometricType>[].obs;
 
   // Getter rápido para acceder al user en toda la app
-  LoginMdl get currentUser => state ?? LoginMdl.empty();
+  LoginModel get currentUser => state ?? LoginModel.empty();
 
   Future<void> login(String email, String password) async {
     final UserStorage userStorage = AppService.i.userStorage;
     final NotificationService notify = AppService.i.notifications;
-    LoginMdl user = LoginMdl.empty();
+    LoginModel user = LoginModel.empty();
     isLoading.value = true;
 
     if (isHardCode) {
       await Future.delayed(const Duration(milliseconds: 1750));
-      user = LoginMdl.hardCode();
+      user = LoginModel.hardCode();
       userStorage.saveUser(user);
       change(user, status: RxStatus.success());
       unawaited(Get.toNamed('/home'));
@@ -74,11 +76,11 @@ class LoginController extends GetxController with StateMixin<LoginMdl> {
             showCloseButton: true,
           );
 
-          change(LoginMdl.empty(), status: RxStatus.error(failure.message));
+          change(LoginModel.empty(), status: RxStatus.error(failure.message));
         },
         (success) {
-          user = LoginMdl.fromRaw(success.data);
-           userStorage.saveUser(user);
+          user = LoginModel.fromRaw(success.data);
+          userStorage.saveUser(user);
           change(user, status: RxStatus.success());
           unawaited(Get.toNamed('/home'));
         },
@@ -99,7 +101,7 @@ class LoginController extends GetxController with StateMixin<LoginMdl> {
   @override
   Future<void> onInit() async {
     super.onInit();
-    change(LoginMdl.empty(), status: RxStatus.success());
+    change(LoginModel.empty(), status: RxStatus.success());
     await checkBiometricsSupport();
   }
 

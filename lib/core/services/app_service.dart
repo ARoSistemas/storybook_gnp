@@ -36,7 +36,7 @@ class AppService extends GetxService {
     ui = Get.put(UIService());
 
     ///
-    notifications = Get.put(NotificationService());
+    notifications = Get.put(NotificationService(), permanent: true);
 
     await storage.init();
     await ui.init();
