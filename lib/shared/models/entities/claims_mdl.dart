@@ -1,3 +1,6 @@
+/// Claims Model
+/// Represents the claims contained within the JWT payload.
+/// Includes methods for JSON serialization and deserialization.
 class Claims {
   Claims({
     required this.rol,

@@ -1,7 +1,11 @@
 import 'dart:convert';
 
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
+import 'package:storybook_gnp/shared/models/entities/jwt_payload_mdl.dart';
+import 'package:storybook_gnp/shared/models/entities/token_mdl.dart';
 
+/// User Model
+/// Represents the user details returned from the login API.
+/// Includes methods for JSON serialization and deserialization.
 class UserModel {
   UserModel({
     required this.token,

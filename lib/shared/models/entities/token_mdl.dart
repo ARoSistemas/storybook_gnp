@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
+import 'package:storybook_gnp/shared/models/entities/jwt_payload_mdl.dart';
 
 /// Token Model
 /// Represents the JWT and refresh token for user authentication.

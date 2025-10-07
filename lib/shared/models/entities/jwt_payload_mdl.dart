@@ -1,5 +1,10 @@
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
+import 'dart:convert';
 
+import 'package:storybook_gnp/shared/models/entities/claims_mdl.dart';
+
+/// JWT Payload Model
+/// Represents the payload of a JWT token.
+/// Includes methods for JSON serialization and deserialization.
 class JwtPayload {
   JwtPayload({
     required this.iss,
@@ -53,4 +58,20 @@ class JwtPayload {
   final String projectId;
   final String uid;
   final Claims claims;
+}
+
+/// Parses a JWT token and returns its payload as a [JwtPayload] object.
+/// If the token is invalid, returns an empty [JwtPayload].
+JwtPayload parseJwt(String token) {
+  final List<String> parts = token.split('.');
+  if (parts.length != 3) {
+    return JwtPayload.empty();
+  }
+
+  final String payload = parts[1];
+  final String normalized = base64Url.normalize(payload);
+  final String decoded = utf8.decode(base64Url.decode(normalized));
+  final Map<String, dynamic> payloadMap = jsonDecode(decoded);
+
+  return JwtPayload.fromJson(payloadMap);
 }

@@ -13,7 +13,6 @@ import 'package:storybook_gnp/core/services/network/api_response_failure.dart';
 import 'package:storybook_gnp/core/services/network/api_response_success.dart';
 import 'package:storybook_gnp/core/utils/logger.dart';
 import 'package:storybook_gnp/shared/models/entities/user_mdl.dart';
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
 import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/shared/services/storage/user_storage.dart';
 import 'package:storybook_gnp/shared/widgets/custom_notification.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:storybook_gnp/shared/models/entities/claims_mdl.dart';
 import 'package:storybook_gnp/shared/models/entities/user_mdl.dart';
-import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
 import 'package:storybook_gnp/src/modules/login/login_controller.dart';
 
 class HomePage extends GetView<LoginController> {
