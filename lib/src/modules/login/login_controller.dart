@@ -12,14 +12,15 @@ import 'package:storybook_gnp/core/services/network/api_response.dart';
 import 'package:storybook_gnp/core/services/network/api_response_failure.dart';
 import 'package:storybook_gnp/core/services/network/api_response_success.dart';
 import 'package:storybook_gnp/core/utils/logger.dart';
+import 'package:storybook_gnp/shared/models/entities/user_mdl.dart';
+import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
 import 'package:storybook_gnp/shared/services/alerts/notification_service.dart';
 import 'package:storybook_gnp/shared/services/storage/user_storage.dart';
 import 'package:storybook_gnp/shared/widgets/custom_notification.dart';
-import 'package:storybook_gnp/src/modules/login/login_model.dart';
 
-// part 'login_model.dart';
+part 'login_model.dart';
 
-class LoginController extends GetxController with StateMixin<LoginModel> {
+class LoginController extends GetxController with StateMixin<_LoginModel> {
   LoginController(this.apiCall);
   final ApiCallAbstract apiCall;
 
@@ -36,19 +37,16 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
   RxBool isPasswordVisible = false.obs;
   final RxList<BiometricType> availableBiometrics = <BiometricType>[].obs;
 
-  // Getter rápido para acceder al user en toda la app
-  LoginModel get currentUser => state ?? LoginModel.empty();
-
   Future<void> login(String email, String password) async {
     final UserStorage userStorage = AppService.i.userStorage;
     final NotificationService notify = AppService.i.notifications;
-    LoginModel user = LoginModel.empty();
+    _LoginModel user = _LoginModel.empty();
     isLoading.value = true;
 
     if (isHardCode) {
       await Future.delayed(const Duration(milliseconds: 1750));
-      user = LoginModel.hardCode();
-      userStorage.saveUser(user);
+      user = _LoginModel.hardCode();
+      userStorage.saveUser(user.payload);
       change(user, status: RxStatus.success());
       unawaited(Get.toNamed('/home'));
     } else {
@@ -56,7 +54,7 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
       final ApiResponse<ApiFailure, ApiSuccess> response = await apiCall.call(
         baseUri: baseUrl,
         bearer: '',
-        endpoint: '/admonproveedores/conveniomedico/login',
+        endpoint: '/admonproveedores/conveniomedicos/login',
         method: HttpMethod.post,
         body: jsonEncode(
           {
@@ -76,11 +74,11 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
             showCloseButton: true,
           );
 
-          change(LoginModel.empty(), status: RxStatus.error(failure.message));
+          change(_LoginModel.empty(), status: RxStatus.error(failure.message));
         },
         (success) {
-          user = LoginModel.fromRaw(success.data);
-          userStorage.saveUser(user);
+          user = _LoginModel.fromRaw(success.data);
+          userStorage.saveUser(user.payload);
           change(user, status: RxStatus.success());
           unawaited(Get.toNamed('/home'));
         },
@@ -101,7 +99,7 @@ class LoginController extends GetxController with StateMixin<LoginModel> {
   @override
   Future<void> onInit() async {
     super.onInit();
-    change(LoginModel.empty(), status: RxStatus.success());
+    change(_LoginModel.empty(), status: RxStatus.success());
     await checkBiometricsSupport();
   }
 

@@ -112,7 +112,7 @@ class ApiCallImpl extends GetConnect implements ApiCallAbstract {
     StackTrace? stackTrace;
 
     final String fullUrl = getBaseUri(baseUri, endpoint);
-    Response? petitionResponse;
+    late Response petitionResponse;
 
     /// Merge headers with Authorization
     final Map<String, String> finalHeaders = bearer.isNotEmpty
@@ -223,47 +223,57 @@ ${const JsonEncoder.withIndent(' ').convert(logs)}
         };
 
         /// Process response body with charset handling
-        final String contentType =
-            petitionResponse.headers?['content-type']?.toLowerCase() ?? '';
-        final String contentDisposition =
-            petitionResponse.headers?['content-disposition']?.toLowerCase() ??
-            '';
+        // final String contentType =
+        //     petitionResponse.headers?['content-type']?.toLowerCase() ?? '';
+        // final String contentDisposition =
+        //     petitionResponse.headers?['content-disposition']?.
+        //     .toLowerCase() ??
+        //     '';
 
-        final bool isFileDownload =
-            contentType.contains('application/octet-stream') ||
-            contentType.contains('application/pdf') ||
-            contentType.startsWith('image/') ||
-            contentType.startsWith('video/') ||
-            contentType.startsWith('audio/') ||
-            contentType.contains('multipart/') ||
-            contentDisposition.contains('attachment');
+        // final bool isFileDownload =
+        //     contentType.contains('application/octet-stream') ||
+        //     contentType.contains('application/pdf') ||
+        //     contentType.startsWith('image/') ||
+        //     contentType.startsWith('video/') ||
+        //     contentType.startsWith('audio/') ||
+        //     contentType.contains('multipart/') ||
+        //     contentDisposition.contains('attachment');
 
         /// Change charSet UTF-8 o manejar archivos
-        if (petitionResponse.bodyBytes != null) {
-          final List<List<int>> bodyBytesData = await petitionResponse
-              .bodyBytes!
-              .toList();
+        // if (petitionResponse.bodyBytes != null) {
+        // final List<List<int>> bodyBytesData = await petitionResponse
+        //     .bodyBytes!
+        //     .toList();
 
-          final List<int> flattenedBytes = bodyBytesData
-              .expand((x) => x)
-              .toList();
+        // final List<int> flattenedBytes = bodyBytesData
+        //     .expand((x) => x)
+        //     .toList();
 
-          if (isFileDownload) {
-            /// For files: return bytes as base64
-            responseApiWithChartSet = base64Encode(flattenedBytes);
-          } else {
-            /// For JSON/text: decode as UTF-8
-            responseApiWithChartSet = utf8.decode(flattenedBytes);
-          }
-        } else {
-          responseApiWithChartSet = petitionResponse.bodyString ?? '';
-        }
+        // if (isFileDownload) {
+        /// For files: return bytes as base64
+        // responseApiWithChartSet = base64Encode(flattenedBytes);
+        // } else {
+        /// For JSON/text: decode as UTF-8
+        // responseApiWithChartSet = utf8.decode(flattenedBytes);
+        // }
+        // } else {
+        //   responseApiWithChartSet = petitionResponse.bodyString ?? '';
+        // }
+
+        // logs = {
+        //   ...logs,
+        //   'Response body': isFileDownload
+        //       ? '<File Content - ${responseApiWithChartSet.length} bytes>'
+        //       : responseApiWithChartSet.isNotEmpty
+        //       ? jsonDecode(responseApiWithChartSet)
+        //       : '',
+        // };
+
+        responseApiWithChartSet = petitionResponse.bodyString ?? '';
 
         logs = {
           ...logs,
-          'Response body': isFileDownload
-              ? '<File Content - ${responseApiWithChartSet.length} bytes>'
-              : responseApiWithChartSet.isNotEmpty
+          'Response body': responseApiWithChartSet.isNotEmpty
               ? jsonDecode(responseApiWithChartSet)
               : '',
         };
@@ -309,7 +319,7 @@ ${const JsonEncoder.withIndent(' ').convert(logs)}
           err.contains('HandshakeException')) {
         return ApiResponse.failure(
           ApiFailure(
-            code: petitionResponse?.statusCode ?? 0,
+            code: petitionResponse.statusCode ?? 0,
             message: 'Network error: $err',
           ),
         );

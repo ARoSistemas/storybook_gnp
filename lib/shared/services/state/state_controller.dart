@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:storybook_gnp/src/modules/login/login_model.dart';
+import 'package:storybook_gnp/shared/models/entities/user_mdl.dart';
 
 class StateController extends GetxController {
   // Datos principales
@@ -7,7 +7,7 @@ class StateController extends GetxController {
   // final Rx<ProfileMdl> profile = ProfileMdl.empty().obs;
 
   // Setters
-  void setUser(UserModel newUser) => user.value = newUser;
+  // void setUser(UserModel newUser) => user.value = newUser;
   // void setProfile(ProfileMdl newProfile) => profile.value = newProfile;
 
   // Accesos rápidos

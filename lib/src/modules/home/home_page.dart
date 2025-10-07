@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:storybook_gnp/shared/models/entities/user_mdl.dart';
+import 'package:storybook_gnp/shared/models/outgoing/login_response_model.dart';
 import 'package:storybook_gnp/src/modules/login/login_controller.dart';
-import 'package:storybook_gnp/src/modules/login/login_model.dart';
 
 class HomePage extends GetView<LoginController> {
   const HomePage({super.key});
@@ -14,8 +15,8 @@ class HomePage extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
-    final UserModel user = controller.currentUser.payload;
-    final Claims claims = controller.currentUser.payload.token.jwtLogin.claims;
+    final UserModel user = controller.state!.payload;
+    final Claims claims = controller.state!.payload.token.jwtLogin.claims;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Page from Login'),

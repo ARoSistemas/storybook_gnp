@@ -1,4 +1,4 @@
-const bool isHardCode = true;
+const bool isHardCode = false;
 
 /// The current environment of the application.
 /// **Possible Values:**
