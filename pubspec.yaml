@@ -13,6 +13,7 @@ dependencies:
   flex_color_scheme: ^8.2.0
   flutter:
     sdk: flutter
+  flutter_svg: ^2.2.1
   get: ^4.7.2
   get_storage: ^2.1.1
   local_auth: ^2.3.0
@@ -28,7 +29,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^5.4.4
-
 
 flutter:
   uses-material-design: true
