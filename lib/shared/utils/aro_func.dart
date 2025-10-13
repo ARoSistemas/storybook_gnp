@@ -25,14 +25,13 @@ class ARoFunc {
   ///
   /// [password] The password to check.
   /// Returns `true` if the password is valid, otherwise `false`.
-  static bool isValidPassword(String password) {
-    return RegExp(
-      r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$',
-    ).hasMatch(password);
-    // return RegExp(
-    // //         r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,15}$')
-    // //     .hasMatch(password);
-  }
+  static bool isValidPassword(String password) => RegExp(
+    r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$',
+  ).hasMatch(password);
+
+  // return RegExp(
+  // //         r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>]).{8,15}$')
+  // //     .hasMatch(password);
 
   /// Checks if the provided phone number is valid.
   ///
@@ -40,7 +39,7 @@ class ARoFunc {
   ///
   /// [phone] The phone number to check.
   /// Returns `true` if the phone number is valid, otherwise `false`.
-  static bool isValidPhone({required String phone}) =>
+  bool isValidPhone({required String phone}) =>
       RegExp(r'^[0-9]{10}$').hasMatch(phone);
 
   /// Checks if the provided value is valid.
@@ -49,15 +48,16 @@ class ARoFunc {
   ///
   /// [value] The value to check.
   /// Returns `true` if the value is valid, otherwise `false`.
-  static bool isValid({required String value}) =>
+  bool isValid({required String value}) =>
       RegExp(r'^[a-zA-Z0-9]+$').hasMatch(value);
 
   /// Gets the current date in the format 'dd/MM/yy'.
   ///
-  /// The date is obtained from the system and formatted into a string without non-alphanumeric characters.
+  /// The date is obtained from the system and formatted into a string
+  /// without non-alphanumeric characters.
   ///
   /// Returns a string with the current date in the format 'dd/MM/yy'.
-  static String getStringFecha() {
+  String getStringFecha() {
     final DateTime thisMoment = DateTime.now();
     final String hoy = thisMoment.toString().replaceAll(RegExp('([:. -])'), '');
 
@@ -66,17 +66,19 @@ class ARoFunc {
 
   /// Gets the current time in the format 'HH:mm'.
   ///
-  /// The time is obtained from the system and formatted into a string without non-alphanumeric characters.
+  /// The time is obtained from the system and formatted into a string
+  /// without non-alphanumeric characters.
   ///
   /// Returns a string with the current time in the format 'HH:mm'.
-  static String getStringHora() {
+  String getStringHora() {
     final String ret = DateTime.now().toString().substring(11, 16);
     return ret;
   }
 
   /// Gets the current year and month in the format 'yyyyMM'.
   ///
-  /// The year and month are obtained from the system and formatted into a string without non-alphanumeric characters.
+  /// The year and month are obtained from the system and formatted into a
+  /// string without non-alphanumeric characters.
   ///
   /// Returns a string with the current year and month in the format 'yyyyMM'.
   String getYearMonth() {

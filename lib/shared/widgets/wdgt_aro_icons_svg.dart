@@ -1,5 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:storybook_gnp/shared/utils/aro_assets.dart';
 
 class MyIconSVG extends StatelessWidget {
   /// **Parameters**:
@@ -10,20 +13,24 @@ class MyIconSVG extends StatelessWidget {
   ///    The width of the icon. Default is `25`.
   ///
   /// - `bgColor` (Color?, optional):
-  ///    The background color of the icon. Default is the `onPrimary` color from the theme.
+  ///    The background color of the icon. Default is the `onPrimary` color
+  ///    from the theme.
   ///
   /// - `icon` (String):
   ///    The name or path of the icon to be displayed.
   ///
   /// **Notes**:
-  /// - The `MyIconSVG` widget uses the `LibFunc.getIcon` and `LibFunc.getIconFromColor`
-  ///   methods to fetch the appropriate icon based on the `isFromColor` parameter.
+  /// - The `MyIconSVG` widget uses the `LibFunc.getIcon` and
+  ///   `LibFunc.getIconFromColor`
+  ///   methods to fetch the appropriate icon based on the
+  ///   `isFromColor` parameter.
   ///
   /// - The `bgColor` parameter is used to apply a color filter to the icon.
-  ///   If `bgColor` is not provided, the `onPrimary` color from the current theme is used.
+  ///   If `bgColor` is not provided, the `onPrimary` color from the current
+  ///   theme is used.
   ///
-  /// - The `copyWith` method allows for creating a copy of the `MyIconSVG` widget with
-  ///   modified properties.
+  /// - The `copyWith` method allows for creating a copy of the `MyIconSVG`
+  ///   widget with modified properties.
   ///
   /// **Example**:
   /// ```dart
@@ -74,9 +81,10 @@ class MyIconSVG extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DoubleProperty('height', height));
-    properties.add(DoubleProperty('width', width));
-    properties.add(ColorProperty('bgColor', bgColor));
-    properties.add(StringProperty('icon', icon));
+    properties
+      ..add(DoubleProperty('height', height))
+      ..add(DoubleProperty('width', width))
+      ..add(ColorProperty('bgColor', bgColor))
+      ..add(StringProperty('icon', icon));
   }
 }

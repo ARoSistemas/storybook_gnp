@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/aro_assets.dart';
+import 'package:storybook_gnp/shared/utils/aro_assets.dart';
 
 class ARoImage extends StatelessWidget {
   const ARoImage({
+    required this.img,
     super.key,
     this.height,
     this.width,
@@ -11,7 +13,6 @@ class ARoImage extends StatelessWidget {
     this.isAsset = true,
     this.fit = BoxFit.cover,
     this.alignment = Alignment.center,
-    required this.img,
   });
 
   final double? height;
@@ -35,11 +36,13 @@ class ARoImage extends StatelessWidget {
     String imagePath;
 
     if (isAsset) {
-      final assetPathResolver = _assetResolvers[type];
+      final String Function(String p1)? assetPathResolver =
+          _assetResolvers[type];
 
       if (assetPathResolver == null) {
         debugPrint(
-            'Tipo de imagen "$type" no soportado por ARoImage o Assets.');
+          'Tipo de imagen "$type" no soportado por ARoImage o Assets.',
+        );
         return const SizedBox(
           height: 50,
           width: 50,
@@ -68,12 +71,14 @@ class ARoImage extends StatelessWidget {
         fit: fit,
         alignment: alignment,
         loadingBuilder: (context, child, loadingProgress) {
-          if (loadingProgress == null) return child;
+          if (loadingProgress == null) {
+            return child;
+          }
           return Center(
             child: CircularProgressIndicator(
               value: loadingProgress.expectedTotalBytes != null
                   ? loadingProgress.cumulativeBytesLoaded /
-                      loadingProgress.expectedTotalBytes!
+                        loadingProgress.expectedTotalBytes!
                   : null,
             ),
           );
@@ -90,5 +95,17 @@ class ARoImage extends StatelessWidget {
       width: width,
       child: imageWidget,
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DoubleProperty('height', height))
+    ..add(DoubleProperty('width', width))
+    ..add(StringProperty('img', img))
+    ..add(StringProperty('type', type))
+    ..add(DiagnosticsProperty<bool>('isAsset', isAsset))
+    ..add(EnumProperty<BoxFit>('fit', fit))
+    ..add(DiagnosticsProperty<Alignment>('alignment', alignment));
   }
 }

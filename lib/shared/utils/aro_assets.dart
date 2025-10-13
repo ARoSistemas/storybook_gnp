@@ -25,7 +25,8 @@ class ARoAssets {
     /// - 'offline': 'assets/animations/offline.json'
     ///
     /// **Returns**:
-    /// - `String`: The path to the animation asset, or 'assets/animations/noimage.json' if the asset name is not found.
+    /// - `String`: The path to the animation asset,
+    /// or 'assets/animations/noimage.json' if the asset name is not found.
     ///
     /// **Example**:
     /// ```dart
